@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../resources/templates/plantilla.xhtml">
+
+            <ui:define name="content">
+             
+                <h:form>
+                    <h:messages showDetail="true" showSummary="true"/>
+                        <h:panelGrid columns="3">
+                        
+                        <h:outputLabel for="cedula" value="Cedula"/>
+                        <h:inputText id="cedula" required="true"
+                                     value="#{usuarioController.usuario.cedula}"/>
+                        <h:message for="cedula"/>
+                        
+                        <h:outputLabel for="nombre" value="Nombre"/>
+                        <h:inputText id="nombre" required="true"
+                                     value="#{usuarioController.usuario.nombre}"/>
+                        <h:message for="nombre"/>
+                        
+                        <h:outputLabel for="apellido" value="Apellido"/>
+                        <h:inputText id="apellido" required="true"
+                                     value="#{usuarioController.usuario.apellido}"/>
+                        <h:message for="apellido"/>
+                        
+                        <h:outputLabel for="direccion" value="Dirección"/>
+                        <h:inputText id="direccion" required="true"
+                                     value="#{usuarioController.usuario.direccion}"/>
+                        <h:message for="direccion"/>
+                        
+                        <h:outputLabel for="telefono" value="Telefono"/>
+                        <h:inputText id="telefono" required="true"
+                                     value="#{usuarioController.usuario.telefono}"/>
+                        <h:message for="telefono"/>
+                        
+                        <h:outputLabel for="tipos" value="Tipo de Usuario" rendered="#{usuarioController.verificarTipo() eq true}"/>
+                        <h:selectOneMenu id="tipos" converter="tipoUsuarioConverter"
+                                         value="#{usuarioController.usuario.tipoID}"
+                                         rendered="#{usuarioController.verificarTipo() eq true}">
+                            <f:selectItems var="tipo" value="#{usuarioController.tipos}"
+                                           itemLabel="#{tipo.descripcion}" itemValue="#{tipo}"/>
+                        </h:selectOneMenu>
+                        <h:message for="tipos"/>
+                        
+                        <h:commandButton id="regiUsuario" value="Registrar"
+                                         action="#{usuarioController.registrarUsuario()}" />
+                                         
+                    </h:panelGrid>
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

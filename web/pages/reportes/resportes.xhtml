@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../resources/templates/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+
+                    <h:panelGroup>
+                        <h:outputLabel value="Modelo mas económico"/>
+                        <h:dataTable value="#{repostesController.mostrarVehiculoMasEconomico()}" var="ll"
+                                     border="1" cellpadding="5" cellspacing="3">
+
+                            <h:column>
+                                <f:facet name="header">Marca</f:facet>
+                                <h:outputText value="#{ll.marca}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Precio</f:facet>
+                                <h:outputText value="#{ll.precio}"/>
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:panelGroup>
+
+                    <br/> <br/>
+                    <h:panelGroup style="margin-top: 500px;">
+                        <h:outputLabel value="Modelo mas reciente"/>
+                        <h:dataTable value="#{repostesController.mostrarModeloMasReciente()}" var="pp"
+                                     border="1" cellpadding="5" cellspacing="3">
+
+                            <h:column>
+                                <f:facet name="header">Marca</f:facet>
+                                <h:outputText value="#{pp.marca}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Modelo</f:facet>
+                                <h:outputText value="#{pp.modelo}"/>
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:panelGroup>
+
+                    <br/> <br/>
+                    <h:panelGroup style="margin-top: 500px;">
+                        <h:outputLabel value="Más solicitado"/>
+                        <h:dataTable value="#{repostesController.mostrarVehiculoMasVendido()}" var="pp"
+                                     border="1" cellpadding="5" cellspacing="3">
+
+                            <h:column>
+                                <f:facet name="header">Marca</f:facet>
+                                <h:outputText value="#{pp.marca}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Modelo</f:facet>
+                                <h:outputText value="#{pp.modelo}"/>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">Precio</f:facet>
+                                <h:outputText value="#{pp.precio}"/>
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:panelGroup>
+                    
+                     <br/> <br/>
+                    <h:panelGroup style="margin-top: 500px;">
+                        <h:outputLabel for="valor" value="Valor"/>
+                        <h:inputText id="valor" value="#{repostesController.valor}"/>
+                        <h:commandButton  value="Enviar" action="#{repostesController.mostrarVehiculoValorSuperior(valor)}"/>           
+                            
+                        <h:outputLabel value="Valor "/>
+                        <h:dataTable value="#{repostesController.vehiculos}" var="pp"
+                                     border="1" cellpadding="5" cellspacing="3">
+
+                            <h:column>
+                                <f:facet name="header">Marca</f:facet>
+                                <h:outputText value="#{pp.marca}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Modelo</f:facet>
+                                <h:outputText value="#{pp.modelo}"/>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">Precio</f:facet>
+                                <h:outputText value="#{pp.precio}"/>
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:panelGroup>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../resources/templates/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h:messages showDetail="true" showSummary="true"/>
+                    <h:panelGrid columns="3">
+                        
+                        <h:outputLabel for="clientes" value="Cliente"/>
+                        <h:selectOneMenu id="clientes" converter="usuarioConverter"
+                                         value="#{ventaController.venta.usuarioID}">
+                            <f:selectItems var="cliente" value="#{ventaController.usuarios}"
+                                           itemLabel="#{cliente.apellido} #{cliente.nombre}"
+                                           itemValue="#{cliente}"/>
+                        </h:selectOneMenu>
+                        <h:message for="clientes"/>
+                        
+                        <h:outputLabel for="vehiculos" value="Vehiculo"/>
+                        <h:selectOneMenu id="vehiculos" converter="vehiculoConverter"
+                                         value="#{ventaController.venta.vehiculoID}">
+                            <f:selectItems var="vehiculo" value="#{ventaController.vehiculos}"
+                                           itemLabel="#{vehiculo.marca} #{vehiculo.modelo}"
+                                           itemValue="#{vehiculo}"/>
+                        </h:selectOneMenu>
+                        <h:message for="vehiculos"/>
+                        
+                        <h:commandButton id="registrarVenta" value="Registrar" action="#{ventaController.registrarVenta()}"/>
+                    </h:panelGrid>
+                
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../resources/templates/plantilla.xhtml">
+
+            <ui:define name="content">
+                
+                <h2>Listado de Vehiculos</h2>
+                <h:form>
+                    <h:link value="Registrar Vehiculo" outcome="registrarVehiculo"/>
+                    <h:messages showDetail="true" showSummary="true"/>
+                    <h:dataTable var="vh" value="#{vehiculoController.listarVehiculos()}"
+                                 border="1" cellpadding="5" cellspacing="3">
+
+                        <h:column>
+                            <f:facet name="header">Marca</f:facet>
+                            <h:outputText value="#{vh.marca}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Modelo</f:facet>
+                            <h:outputText value="#{vh.modelo}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Precio</f:facet>
+                            <h:outputText value="#{vh.precio}"/>
+                        </h:column>
+                        
+                    </h:dataTable>
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

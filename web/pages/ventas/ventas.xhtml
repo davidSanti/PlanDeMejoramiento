@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../resources/templates/plantilla.xhtml">
+
+            <ui:define name="content">
+                
+                 <h2>Listado de Ventas</h2>
+                 <h:form>
+                    <h:link value="Registrar Venta" outcome="registrarVenta"/>
+                    <h:messages showDetail="true" showSummary="true"/>
+                    <h:dataTable var="venta" value="#{ventaController.listarVentas()}"
+                                 border="1" cellpadding="5" cellspacing="3">
+                        
+                        <h:column>
+                            <f:facet name="header">Código</f:facet>
+                            <h:outputText value="#{venta.ventaID}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{venta.fecha}">
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+                            </h:outputText>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">Vehiculo</f:facet>
+                            <h:outputText value="#{venta.vehiculoID.marca} #{venta.vehiculoID.modelo}"/>
+                        </h:column>
+                    
+                        <h:column>
+                            <f:facet name="header">Cliente</f:facet>
+                            <h:outputText value="#{venta.usuarioID.nombre} #{venta.usuarioID.apellido}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
